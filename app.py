@@ -8,7 +8,7 @@ import os
 
 load_dotenv()
 
-TMDB_API_KEY_ = os.getenv('TMDB_API_KEY')
+TMDB_API_KEY_ = os.getenv('TMDB_API_KEY_')
 
 # Download the .pkl files from Google Drive
 def download_file_from_drive(file_url, output_path):
