@@ -24,8 +24,8 @@ movies_file_url = "https://drive.google.com/file/d/1d7mhUo4SzR45fSYi-tFQR741GYj9
 similarity_file_url = "https://drive.google.com/file/d/1a10EQd5ml0DW7iy85YYmKL1OXNZpW1yy/view?usp=sharing"
 
 # Example usage:
-download_file_from_drive(movies_file_url, "movies_file.csv")
-download_file_from_drive(similarity_file_url, "similarity_file.csv")
+download_file_from_drive(movies_file_url, "movies.pkl")
+download_file_from_drive(similarity_file_url, "similarity.pkl")
 
 # Load the DataFrame and similarity matrix
 choosen_df = pickle.load(open(movies_file_path, 'rb'))  # Load the DataFrame
