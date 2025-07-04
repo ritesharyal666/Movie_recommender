@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 import requests
 import gdown
-
+import re
 from dotenv import load_dotenv
 import os
 
@@ -10,8 +10,6 @@ load_dotenv()
 
 TMDB_API_KEY_ = os.getenv('TMDB_API_KEY_')
 
-import gdown
-import re
 
 def download_file_from_drive(file_url, output_path):
     # Extract file ID from the Google Drive link using regex
@@ -24,8 +22,8 @@ def download_file_from_drive(file_url, output_path):
         print("Error: Could not extract file ID from the URL.")
 
 # File URLs from Google Drive
-movies_file_url = "https://drive.google.com/file/d/1d7mhUo4SzR45fSYi-tFQR741GYj9NmYw/view?usp=sharing"
-similarity_file_url = "https://drive.google.com/file/d/1a10EQd5ml0DW7iy85YYmKL1OXNZpW1yy/view?usp=sharing"
+similarity_file_url = "https://drive.google.com/file/d/1a10EQd5ml0DW7iy85YYmKL1OXNZpW1yy/view?usp=drive_link"
+movies_file_url = "https://drive.google.com/file/d/1d7mhUo4SzR45fSYi-tFQR741GYj9NmYw/view?usp=drive_link"
 
 # Example usage:
 download_file_from_drive(movies_file_url, "movies.pkl")
