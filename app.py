@@ -9,23 +9,39 @@ import os
 load_dotenv()
 
 TMDB_API_KEY_ = os.getenv('TMDB_API_KEY')
+import os
+import pickle
+import gdown
+import re
 
-# Download the .pkl files from Google Drive
+# Function to download a file from Google Drive if not already downloaded
 def download_file_from_drive(file_url, output_path):
-    # Extract file ID from the Google Drive link
-    file_id = file_url.split('/d/')[1].split('/')[0]
-    gdown.download(f"https://drive.google.com/uc?id={file_id}", output_path, quiet=False)
+    # Check if the file already exists, skip downloading if it does
+    if not os.path.exists(output_path):
+        # Extract file ID using regex
+        match = re.search(r'/d/([a-zA-Z0-9_-]+)', file_url)
+        if match:
+            file_id = match.group(1)
+            # Use the correct format for gdown
+            gdown.download(f"https://drive.google.com/uc?id={file_id}", output_path, quiet=False)
+        else:
+            print(f"Error: Could not extract file ID from URL: {file_url}")
+    else:
+        print(f"File {output_path} already exists. Skipping download.")
 
 # File URLs from Google Drive
 movies_file_url = "https://drive.google.com/file/d/1d7mhUo4SzR45fSYi-tFQR741GYj9NmYw/view?usp=drive_link"
 similarity_file_url = "https://drive.google.com/file/d/1a10EQd5ml0DW7iy85YYmKL1OXNZpW1yy/view?usp=drive_link"
 
-# Download the .pkl files
+# File paths for saving the .pkl files
 movies_file_path = "movies.pkl"
 similarity_file_path = "similarity.pkl"
 
+# Download the .pkl files if they don't exist
 download_file_from_drive(movies_file_url, movies_file_path)
 download_file_from_drive(similarity_file_url, similarity_file_path)
+
+
 
 # Load the DataFrame and similarity matrix
 choosen_df = pickle.load(open(movies_file_path, 'rb'))  # Load the DataFrame
