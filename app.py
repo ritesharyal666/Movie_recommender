@@ -17,8 +17,8 @@ def download_file_from_drive(file_url, output_path):
     gdown.download(f"https://drive.google.com/uc?id={file_id}", output_path, quiet=False)
 
 # File URLs from Google Drive
-movies_file_url = "https://drive.google.com/file/d/1d7mhUo4SzR45fSYi-tFQR741GYj9NmYw/view?usp=sharing"
-similarity_file_url = "https://drive.google.com/file/d/1a10EQd5ml0DW7iy85YYmKL1OXNZpW1yy/view?usp=sharing"
+movies_file_url = "https://drive.google.com/file/d/1d7mhUo4SzR45fSYi-tFQR741GYj9NmYw/view?usp=drive_link"
+similarity_file_url = "https://drive.google.com/file/d/1a10EQd5ml0DW7iy85YYmKL1OXNZpW1yy/view?usp=drive_link"
 
 # Download the .pkl files
 movies_file_path = "movies.pkl"
