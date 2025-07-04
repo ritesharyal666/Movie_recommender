@@ -10,14 +10,18 @@ load_dotenv()
 
 TMDB_API_KEY_ = os.getenv('TMDB_API_KEY_')
 
-# Download the .pkl files from Google Drive
+import gdown
+import re
 
 def download_file_from_drive(file_url, output_path):
-    # Extract file ID from the Google Drive link
-    file_id = file_url.split('/d/')[1].split('/')[0]
-    
-    # Use the correct format for gdown
-    gdown.download(f"https://drive.google.com/uc?id={file_id}", output_path, quiet=False)
+    # Extract file ID from the Google Drive link using regex
+    match = re.search(r'/d/([a-zA-Z0-9_-]+)', file_url)
+    if match:
+        file_id = match.group(1)
+        # Use the correct format for gdown
+        gdown.download(f"https://drive.google.com/uc?id={file_id}", output_path, quiet=False)
+    else:
+        print("Error: Could not extract file ID from the URL.")
 
 # File URLs from Google Drive
 movies_file_url = "https://drive.google.com/file/d/1d7mhUo4SzR45fSYi-tFQR741GYj9NmYw/view?usp=sharing"
@@ -26,6 +30,7 @@ similarity_file_url = "https://drive.google.com/file/d/1a10EQd5ml0DW7iy85YYmKL1O
 # Example usage:
 download_file_from_drive(movies_file_url, "movies.pkl")
 download_file_from_drive(similarity_file_url, "similarity.pkl")
+
 
 # Load the DataFrame and similarity matrix
 choosen_df = pickle.load(open(movies_file_path, 'rb'))  # Load the DataFrame
