@@ -112,7 +112,7 @@ def main():
     st.set_page_config(layout="wide", page_title="Movie Recommender", page_icon="🎬")
     
     st.title("🎬 Movie Recommendation Engine")
-    st.markdown("Discover films similar to your favorites with perfect visual presentation")
+    st.markdown("Discover films similar to your favorites.")
     
     with st.spinner('Loading movie database...'):
         choosen_df, similarity_matrix = load_data()
